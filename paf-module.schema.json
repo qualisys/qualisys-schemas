@@ -869,10 +869,8 @@
 	"required": [ 
 		"Project ID",
 		"Root type",
-		"Date format",
-		"Date separator",
-
-		"Package Information"
+		"Types",
+		"Columns"
 	]
 
 }
