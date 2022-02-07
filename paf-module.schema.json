@@ -195,7 +195,7 @@
 								},
 								"Directory pattern": {
 									"title": "Directory pattern",
-									"description": "A naming pattern for the directory created for each item (except measurements, for which this property is useless).\nThe pattern can contain any text as well as names of items braced by $ signs, so for instance the directory pattern “Patient $ID$” would be expanded to Patient followed by the contents of the ID field of that item. In addition to the field names $ClassName$, $TypeName$, $WorkingDirectory$, $TemplateDirectory$ and $InstanceNumber$ can also be used in the naming patterns.\nAn item reference can also specify additional formatting options, inspired by those of the printf format strings. The syntax is: $[Opt. pad char][Minimum length]:Field name$ so for instance $08:ID$ would print the id field and pad it with zeros to a width of 8 characters.\nThe default naming pattern is $TypeName$. If directory names clash when a new directory is created, a counter is appended to the name to make it unique.",
+									"description": "A naming pattern for the directory created for each item (except measurements, for which this property is useless).\n\nThe pattern can contain any text as well as names of items braced by $ signs, so for instance the directory pattern “Patient $ID$” would be expanded to Patient followed by the contents of the ID field of that item. In addition to the field names $ClassName$, $TypeName$, $WorkingDirectory$, $TemplateDirectory$ and $InstanceNumber$ can also be used in the naming patterns.\n\nAn item reference can also specify additional formatting options, inspired by those of the printf format strings. The syntax is: $[Opt. pad char][Minimum length]:Field name$ so for instance $08:ID$ would print the id field and pad it with zeros to a width of 8 characters.\n\nThe default naming pattern is $TypeName$. If directory names clash when a new directory is created, a counter is appended to the name to make it unique.",
 									"type": "string"
 								},
 								"Icon": {
@@ -326,7 +326,7 @@
 						},
 						"Measurement pattern": {
 							"title": "Measurement pattern",
-							"description": "A naming pattern for measurements created for each item. The pattern can contain any text as well as names of items braced by $ signs, so for instance the measurement pattern “Patient $ID$” would be expanded to Patient followed by the contents of the ID field of that item. In addition to the field names $ClassName$, $TypeName$, $WorkingDirectory$, $TemplateDirectory$ and $InstanceNumber$ can also be used in the naming patterns.\nAn item reference can also specify additional formatting options, inspired by those of the printf format strings. The syntax is: $[Opt. pad char][Minimum length]:Field name$ so for instance $08:ID$ would print the id field and pad it with zeros to a width of 8 characters.\nThe default naming pattern is $TypeName$. If directory names clash when a new directory is created, a counter is appended to the name to make it unique. The file extension .qtm will be added automatically. The default value is $TypeName$ $InstanceNumber$.",
+							"description": "A naming pattern for measurements created for each item. The pattern can contain any text as well as names of items braced by $ signs, so for instance the measurement pattern “Patient $ID$” would be expanded to Patient followed by the contents of the ID field of that item. In addition to the field names $ClassName$, $TypeName$, $WorkingDirectory$, $TemplateDirectory$ and $InstanceNumber$ can also be used in the naming patterns.\n\nAn item reference can also specify additional formatting options, inspired by those of the printf format strings. The syntax is: $[Opt. pad char][Minimum length]:Field name$ so for instance $08:ID$ would print the id field and pad it with zeros to a width of 8 characters.\n\nThe default naming pattern is $TypeName$. If directory names clash when a new directory is created, a counter is appended to the name to make it unique. The file extension .qtm will be added automatically. The default value is $TypeName$ $InstanceNumber$.",
 							"type": "string"
 						}
 					},
@@ -359,7 +359,7 @@
 					"properties": {
 						"Type": {
 							"title": "Analysis type",
-							"description": "Names of the analysis type. Valid values are External program, Visual3D, Report, Compound, HTTPRequest, Instantiate template, Create skeleton, Solve skeleton.\nNote: only External program and Compound are available to all users. Other types require the Project Automation Framework developer license which is used for internal Qualisys development and by development partners.",
+							"description": "Names of the analysis type. Valid values are External program, Visual3D, Report, Compound, HTTPRequest, Instantiate template, Create skeleton, Solve skeleton.\n\nNote: only External program and Compound are available to all users. Other types require the Project Automation Framework developer license which is used for internal Qualisys development and by development partners.",
 							"enum": ["External program", "Visual3D", "Report", "Compound", "HTTPRequest", "Instantiate template", "Create skeleton", "Solve skeleton"]
 						},
 						"Prerequisites": {
@@ -391,7 +391,7 @@
 
 						"Program display name": {
 							"title": "Program display name",
-							"description": "External program only: The name to be displayed in the directories tab in project options where the user will have to locate the external executable. NB: Because this path varies between computers rather than between projects, it is not stored in the project, but in computer-global settings file.\nSeveral analyses in different projects may share the same Program display name and QTM will automatically use the same executable path for all of them.",
+							"description": "External program only: The name to be displayed in the directories tab in project options where the user will have to locate the external executable. NB: Because this path varies between computers rather than between projects, it is not stored in the project, but in computer-global settings file.\n\nSeveral analyses in different projects may share the same Program display name and QTM will automatically use the same executable path for all of them.",
 							"type": "string"
 						},
 						"Export session": {
@@ -549,7 +549,7 @@
 						},
 						"Inherit": {
 							"title": "Inherit from parent fields",
-							"description": "This field will be inherited by all subitems of the item that contains it. There are two modes of inheritance Copy and Connect and the value of this property has to be one of them.\nCopy: Inheritance by copying means that when a child to an item that has an inheritable field is created, a field with the same name is created in the child and the value of the field in the parent is copied to that field.\nConnect fields work the same way when an item is created, but if the field is changed in any of the items (any ancestor or heir) it is updated in all the items that have inherited this field from the same origin. If, for instance, a value is inherited by connection from a patient to a number of sessions and the measurements in those sessions and it is changed in one of the sessions it is changed in all those objects, but not in other patients and the sessions of those patients.\nFields are inherited all the down to the leaves from the item including the fields so if the root item would include an inherited field, it would be copied to all items in the tree.",
+							"description": "This field will be inherited by all subitems of the item that contains it. There are two modes of inheritance Copy and Connect and the value of this property has to be one of them.\n\nCopy: Inheritance by copying means that when a child to an item that has an inheritable field is created, a field with the same name is created in the child and the value of the field in the parent is copied to that field.\n\nConnect fields work the same way when an item is created, but if the field is changed in any of the items (any ancestor or heir) it is updated in all the items that have inherited this field from the same origin. If, for instance, a value is inherited by connection from a patient to a number of sessions and the measurements in those sessions and it is changed in one of the sessions it is changed in all those objects, but not in other patients and the sessions of those patients.\n\nFields are inherited all the down to the leaves from the item including the fields so if the root item would include an inherited field, it would be copied to all items in the tree.",
 							"enum": ["Copy", "Connect"]
 						},
 						"Default": {
@@ -758,7 +758,7 @@
 
 						"Values": {
 							"title": "Enum values",
-							"description": "Enum type only: The enum field defines an enumeration. To the user it will be presented as a multiple selection and internally it will be saved as a numeric value. The possible values that an enum can have has to be specified in the Values property. This property can be either a sequence or a map.\nIf it is a sequence it simply lists the choices of the enum and these will be assigned an integer value automatically.\nIf it is a map it is a map from the choices to the numeric value of each particular choice.",
+							"description": "Enum type only: The enum field defines an enumeration. To the user it will be presented as a multiple selection and internally it will be saved as a numeric value. The possible values that an enum can have has to be specified in the Values property. This property can be either a sequence or a map.\n\nIf it is a sequence it simply lists the choices of the enum and these will be assigned an integer value automatically.\n\nIf it is a map it is a map from the choices to the numeric value of each particular choice.",
 							"type": "array",
 							"items": {
 								"anyOf": [
