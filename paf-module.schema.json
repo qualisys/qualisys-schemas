@@ -308,7 +308,7 @@
 						"Display fields dialog after creation": {
 							"title": "Display fields dialog after creation",
 							"description": "If this value is set to true, the fields dialog will be displayed when a measurement has finished to allow the user to edit the fields of the measurement item in the same way that dialog is displayed when other (non-measurement) items are created.",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"Heading": {
 							"title": "Measurement heading",
@@ -397,7 +397,7 @@
 						"Export session": {
 							"title": "Export session",
 							"description": "External program only: Optional. If present, the metadata of the session, all its ancestors and the measurements are exported into a file called session.xml.",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"Export measurements": {
 							"title": "Formats for measurement exports",
@@ -448,12 +448,12 @@
 						"Show output file": {
 							"title": "Show output file",
 							"description": "External program only: Optional. If set, and if the Output file property has been specified, and if the execution of the external program is successful (exit code 0), the output file will be shown in the systems standard program for that file type (as if it was double-clicked in the windows explorer).",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"Do not wait for Application": {
 							"title": "Do not wait for Application",
 							"description": "External program only: Optional. If analysis includes this property, QTM does not wait for external program to finish the processing. If property does not exit, to continue with subsequent analyses, external program must be closed manually (> QTM 2019.1).",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 
 						"Pipeline template": {
@@ -464,7 +464,7 @@
 						"Do not wait for Visual3D": {
 							"title": "Do not wait for Visual3D",
 							"description": "Visual3D analysis only: Optional. If analysis includes this property, QTM does not wait for Visual3D to finish the processing. If property does not exit, to continue with subsequent analyses, Visual3D must be closed manually or Exit_Workspace; command has to be added to the very end of Visual3D script.",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"Close Visual3D": {
 							"title": "Deprecated: Close Visual3D",
@@ -540,12 +540,12 @@
 						"Hidden": {
 							"title": "Hidden field",
 							"description": "If the value is Yes or True, this field will not be displayed in the GUI (and thus will not be editable by the user) but will be exported to files. It will keep its default value.",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"Readonly": {
 							"title": "Readonly field",
 							"description": "If the value is Yes or True this field will be displayed, but the user will not be able to edit it. It will keep its default value.",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"Inherit": {
 							"title": "Inherit from parent fields",
@@ -748,12 +748,12 @@
 						"Force": {
 							"title": "Force non-empty string",
 							"description": "String type only: Force the string to be non-empty.",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 						"JSON": {
 							"title": "Treat string as JSON object",
 							"description": "String type only: The string should be returned as JSON object when queried from the REST api. JSON fields are not exported to session.xml during the analysis step. (Available from QTM 2.14).",
-							"type": "boolean"
+							"$ref": "#/$defs/yaml-boolean"
 						},
 
 						"Values": {
@@ -851,7 +851,7 @@
 														"Editable": {
 															"title": "Editable values",
 															"description": "If yes or true, the value of the field can be edited directly in the tree.",
-															"type": "boolean"
+															"$ref": "#/$defs/yaml-boolean"
 														}
 													}
 												}
@@ -871,6 +871,19 @@
 		"Root type",
 		"Types",
 		"Columns"
-	]
-
+	],
+	"$defs": {
+		"yaml-boolean": {
+			"oneOf": [
+				{
+					"type": "boolean"
+				},
+				{
+					"type": "string",
+					"enum": ["Yes", "yes", "No", "no"]
+				}
+			]
+			
+		}
+	}
 }
