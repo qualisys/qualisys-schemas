@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"line_endings": "unix",
-	"$id": "https://qualisys.com/paf-module.schema.json",
+	"$id": "https://qualisys.com/schemas/paf-module",
 	"title": "Qualisys PAF Module",
 	"description": "A settings.paf file used by Qualisys Project Automation Framework (PAF) Modules",
 	"type": "object",
