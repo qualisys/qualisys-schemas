@@ -2335,11 +2335,11 @@
 					{
 						"type": "object",
 						"title": "Step: vector",
-						"description": "The vector step takes three inputs and outputs a vector sequence signal, where the three inputs will be assigned to the x, y, and z components, respectively.\n\nIf the inputs have different lengths, the output signal will be the length of the longest input and shorter inputs will be padded with NaN values.",
+						"description": "The vector step takes one or three inputs and outputs a vector sequence signal.\n\nIf given three numeric or 1-dimensional series inputs, each input will be assigned to the x, y, and z components, respectively.\n\nAlternatively, if only one input is given and it contains at least three components, the first three components will be used to construct the vector sequence.\n\nIf the inputs have different lengths, the output signal will be the length of the longest input and shorter inputs will be padded with NaN values.",
 						"properties": {
 							"vector": {
 								"title": "vector step",
-								"description": "The vector step takes three inputs and outputs a vector sequence signal, where the three inputs will be assigned to the x, y, and z components, respectively.\n\nIf the inputs have different lengths, the output signal will be the length of the longest input and shorter inputs will be padded with NaN values.",
+								"description": "The vector step takes one or three inputs and outputs a vector sequence signal.\n\nIf given three numeric or 1-dimensional series inputs, each input will be assigned to the x, y, and z components, respectively.\n\nAlternatively, if only one input is given and it contains at least three components, the first three components will be used to construct the vector sequence.\n\nIf the inputs have different lengths, the output signal will be the length of the longest input and shorter inputs will be padded with NaN values.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2640,7 +2640,7 @@
 		},
 		"categoryOption Angle project": {
 			"title": "project (Angle category option)",
-			"description": "If set, the angle will be calculated in two dimensions on the specified coordinate plane by ignoring the component of the input signals which is not part of the plane.\n\nNote: _The projection is only applied for vector-based angles and is ignored when calculating joint angles._",
+			"description": "If set to a string, the angle will be calculated in two dimensions on the specified coordinate plane by ignoring the component of the input signals which is not part of the plane.\n\nUsing a PlaneSequence, projects the input vectors on the provided plane.\n\nNote: _The projection is only applied for vector-based angles and is ignored when calculating joint angles._",
 			"additionalProperties": false,
 			"type": [
 				"string"
