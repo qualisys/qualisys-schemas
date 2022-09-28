@@ -89,6 +89,9 @@
 							},
 							"rotationOrder": {
 								"$ref": "#/$defs/categoryOption Angle rotationOrder"
+							},
+							"unwrap": {
+								"$ref": "#/$defs/categoryOption Angle unwrap"
 							}
 						},
 						"required": [
@@ -136,6 +139,9 @@
 							},
 							"rotationOrder": {
 								"$ref": "#/$defs/categoryOption Angle rotationOrder"
+							},
+							"unwrap": {
+								"$ref": "#/$defs/categoryOption Angle unwrap"
 							}
 						},
 						"required": [
@@ -174,6 +180,9 @@
 							},
 							"rotationOrder": {
 								"$ref": "#/$defs/categoryOption Angle rotationOrder"
+							},
+							"unwrap": {
+								"$ref": "#/$defs/categoryOption Angle unwrap"
 							}
 						},
 						"required": [
@@ -221,6 +230,9 @@
 							},
 							"rotationOrder": {
 								"$ref": "#/$defs/categoryOption Angle rotationOrder"
+							},
+							"unwrap": {
+								"$ref": "#/$defs/categoryOption Angle unwrap"
 							}
 						},
 						"required": [
@@ -1015,11 +1027,11 @@
 					{
 						"type": "object",
 						"title": "Step: dotProduct",
-						"description": "\tCalculates the dot product between two vectors.\n\n\tThe output length will be equal to the length of the first vector sequence.\n\n\tThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\n\tA lone vector in the second input will be used to calculate the dot product between itself \tand all vectors contained in the first vector sequence.",
+						"description": "Calculates the dot product between two vectors.\n\nThe output length will be equal to the length of the first vector sequence.\n\nThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\nA lone vector in the second input will be used to calculate the dot product between itself and all vectors contained in the first vector sequence.",
 						"properties": {
 							"dotProduct": {
 								"title": "dotProduct step",
-								"description": "\tCalculates the dot product between two vectors.\n\n\tThe output length will be equal to the length of the first vector sequence.\n\n\tThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\n\tA lone vector in the second input will be used to calculate the dot product between itself \tand all vectors contained in the first vector sequence.",
+								"description": "Calculates the dot product between two vectors.\n\nThe output length will be equal to the length of the first vector sequence.\n\nThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\nA lone vector in the second input will be used to calculate the dot product between itself and all vectors contained in the first vector sequence.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1047,11 +1059,11 @@
 					{
 						"type": "object",
 						"title": "Step: dotProduct",
-						"description": "\tCalculates the dot product between two vectors.\n\n\tThe output length will be equal to the length of the first vector sequence.\n\n\tThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\n\tA lone vector in the second input will be used to calculate the dot product between itself \tand all vectors contained in the first vector sequence.",
+						"description": "Calculates the dot product between two vectors.\n\nThe output length will be equal to the length of the first vector sequence.\n\nThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\nA lone vector in the second input will be used to calculate the dot product between itself and all vectors contained in the first vector sequence.",
 						"properties": {
 							"dot": {
 								"title": "dot step",
-								"description": "\tCalculates the dot product between two vectors.\n\n\tThe output length will be equal to the length of the first vector sequence.\n\n\tThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\n\tA lone vector in the second input will be used to calculate the dot product between itself \tand all vectors contained in the first vector sequence.",
+								"description": "Calculates the dot product between two vectors.\n\nThe output length will be equal to the length of the first vector sequence.\n\nThe second vector sequence needs to be singular or equal to the first vector sequence in length.\n\nA lone vector in the second input will be used to calculate the dot product between itself and all vectors contained in the first vector sequence.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2128,6 +2140,64 @@
 					},
 					{
 						"type": "object",
+						"title": "Step: refineEvent",
+						"description": "This step allows you to easily pick out frames from an event only when they appear in a specific sequence of other events.\n\nThe main input of this step is the event you want to select frames from.\n\nThe required option sequence defines a sequence of events to happen in order. This option requires at least one instance of the main input event (otherwise, no event would be able to be picked from the sequence).\n\nMultiple instances of the main input event can be supplied to the sequence to enable more complex patterns of events.\n\nThe optional option exclude defines events that cannot occur in a sequence. If it does, the sequence is invalidated, meaning no events will be picked from this sequence.\n\nThe exclude option cannot contain any signals defined in the sequence option.\n\nThe optional option cyclic defines whether or not the sequence should be treated as cyclic, i.e., if the sequence starts and ends with the same events, those events are included in the next \"match-finding\" iteration of the sequence. This is useful for refining event cycles where the end event is the start event of the next cycle.\n\nThe cyclic option is true by default and has to be explicitly set to false to disable.",
+						"properties": {
+							"refineEvent": {
+								"title": "refineEvent step",
+								"description": "This step allows you to easily pick out frames from an event only when they appear in a specific sequence of other events.\n\nThe main input of this step is the event you want to select frames from.\n\nThe required option sequence defines a sequence of events to happen in order. This option requires at least one instance of the main input event (otherwise, no event would be able to be picked from the sequence).\n\nMultiple instances of the main input event can be supplied to the sequence to enable more complex patterns of events.\n\nThe optional option exclude defines events that cannot occur in a sequence. If it does, the sequence is invalidated, meaning no events will be picked from this sequence.\n\nThe exclude option cannot contain any signals defined in the sequence option.\n\nThe optional option cyclic defines whether or not the sequence should be treated as cyclic, i.e., if the sequence starts and ends with the same events, those events are included in the next \"match-finding\" iteration of the sequence. This is useful for refining event cycles where the end event is the start event of the next cycle.\n\nThe cyclic option is true by default and has to be explicitly set to false to disable.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"sequence": {
+								"title": "refineEvent > sequence",
+								"description": "A sequence of events. This must include at least one instance of the main input event.",
+								"additionalProperties": false,
+								"type": [
+									"string"
+								]
+							},
+							"exclude": {
+								"title": "refineEvent > exclude",
+								"description": "Event(s) that will invalidate an event sequence if found within it.",
+								"additionalProperties": false,
+								"type": [
+									"string"
+								]
+							},
+							"cyclic": {
+								"title": "refineEvent > cyclic",
+								"description": "Whether or not to treat sequences as cyclic (true as default).",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"boolean"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"refineEvent",
+							"sequence"
+						]
+					},
+					{
+						"type": "object",
 						"title": "Step: peakFinder",
 						"description": "Find peaks inside a signal based on peak properties.\n\nAt first, it will detect any peak-like features in the signal. If any of the options distance, height, prominence, or width is defined, it will use those properties to filter out peaks that match the criteria.\n\nAs a last step, if the sequence option is used, it will match the peaks against a sequence to return a subset of the peaks.\n\nAs a general rule, the peakFinder step is sensitive to noise in the data, so if noise is expected, first run the data through a low-pass filter.\n\nBased on the SciPy find_peaks function.",
 						"properties": {
@@ -2656,6 +2726,18 @@
 				"string"
 			],
 			"name": "rotationOrder",
+			"category": "Angle"
+		},
+		"categoryOption Angle unwrap": {
+			"title": "unwrap (Angle category option)",
+			"description": "When set to true, an event, or a numeric value, the unwrap option shifts the angle phases in order to achieve a continuous curve, i.e., it tries to detect when an angle crosses over its available range (-PI to PI for radians, -180 to 180 degrees).\n\nThis allows for tracking angles on movements that goes outside of the typical angle range.\n\nTo do this, it looks for jumps between consecutive angles. If the jump is greater than a threshold of half the range (PI for radians, 180 for degrees), the angle is shifted by adding multiples of of the range until the jump no longer crosses the threshold.\n\nThe unwrap algorithm is run over all available components.\n\nIf set to true or 0, the algorithm aligns the unwrap to the start of the sequence. I.e., it assumes the first frame is correct in being within the original range and the following angles are moved to follow suit.\n\nIf set to an Event or a Number, the algorithm will assume that the corresponding frame is correct in being within the original range. All other angles will be shifted to follow suit. This enables tracking a rotational movement where the angle for a specific event is intended to be within the standard range (-PI to PI for radians, -180 to 180 degrees).\n\nIF a supplied event has more than one instance, the first instance is used.\n\nNote: _The unwrap algorithm is sensitive to noise, which may introduce unexpected artifacts. Please consider filtering the signal(s) before calculating its angle using unwrap._",
+			"additionalProperties": false,
+			"type": [
+				"string",
+				"boolean",
+				"number"
+			],
+			"name": "unwrap",
 			"category": "Angle"
 		},
 		"categoryOption Aggregation useCycles": {
