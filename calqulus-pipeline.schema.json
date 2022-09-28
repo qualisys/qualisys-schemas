@@ -2158,7 +2158,8 @@
 								"description": "A sequence of events. This must include at least one instance of the main input event.",
 								"additionalProperties": false,
 								"type": [
-									"string"
+									"string",
+									"array"
 								]
 							},
 							"exclude": {
@@ -2166,7 +2167,8 @@
 								"description": "Event(s) that will invalidate an event sequence if found within it.",
 								"additionalProperties": false,
 								"type": [
-									"string"
+									"string",
+									"array"
 								]
 							},
 							"cyclic": {
