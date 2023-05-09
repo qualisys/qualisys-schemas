@@ -1358,11 +1358,11 @@
 					{
 						"type": "object",
 						"title": "Step: highpass",
-						"description": "Runs a Butterworth high-pass filter over the input data.",
+						"description": "Runs a Butterworth IIR high-pass filter over the input data.",
 						"properties": {
 							"highpass": {
 								"title": "highpass step",
-								"description": "Runs a Butterworth high-pass filter over the input data.",
+								"description": "Runs a Butterworth IIR high-pass filter over the input data.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1372,7 +1372,7 @@
 							},
 							"extrapolate": {
 								"title": "highpass > extrapolate",
-								"description": "Defines how much to add on either side of the series, useful if the filter handles the edges of the series strangely.\n\nLeading and trailing NaN values are removed before extrapolation, i.e., extrapolation begins from the first and last real value. NaN values are then re-inserted in the original places for the output.",
+								"description": "Extrapolation buffer. Defines how many frames to add on either side of the series, useful if the filter handles the edges of the series strangely.\n\nLeading and trailing NaN values are removed before extrapolation, i.e., extrapolation begins from the first and last real value. NaN values are then re-inserted in the original places for the output.\n\nExtrapolation is made by looking at the first and second values, and the last and second-to-last values, respectively. The buffer is then filled with values linearly extrapolated from these two points.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1381,7 +1381,7 @@
 							},
 							"iterations": {
 								"title": "highpass > iterations",
-								"description": "Defines how many times to apply the filter.",
+								"description": "Defines how many times to apply the filter in sequence. If the iterations is set to anything other than 1, the filter will be applied multiple times, using the output of the previous iteration as the input for the next.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1390,7 +1390,7 @@
 							},
 							"cutoff": {
 								"title": "highpass > cutoff",
-								"description": "Defines around what frequency to limit the filter.",
+								"description": "Defines around what frequency to limit the filter. The filter will attenuate frequencies below this value.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1399,7 +1399,7 @@
 							},
 							"order": {
 								"title": "highpass > order",
-								"description": "Defines the filter order.",
+								"description": "Defines the filter order. The higher the order, the steeper the attenuation slope will be.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1426,11 +1426,11 @@
 					{
 						"type": "object",
 						"title": "Step: lowpass",
-						"description": "Runs a Butterworth low-pass filter over the input data.",
+						"description": "Runs a Butterworth IIR low-pass filter over the input data.",
 						"properties": {
 							"lowpass": {
 								"title": "lowpass step",
-								"description": "Runs a Butterworth low-pass filter over the input data.",
+								"description": "Runs a Butterworth IIR low-pass filter over the input data.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1440,7 +1440,7 @@
 							},
 							"extrapolate": {
 								"title": "lowpass > extrapolate",
-								"description": "Defines how much to add on either side of the series, useful if the filter handles the edges of the series strangely.\n\nLeading and trailing NaN values are removed before extrapolation, i.e., extrapolation begins from the first and last real value. NaN values are then re-inserted in the original places for the output.",
+								"description": "Extrapolation buffer. Defines how many frames to add on either side of the series, useful if the filter handles the edges of the series strangely.\n\nLeading and trailing NaN values are removed before extrapolation, i.e., extrapolation begins from the first and last real value. NaN values are then re-inserted in the original places for the output.\n\nExtrapolation is made by looking at the first and second values, and the last and second-to-last values, respectively. The buffer is then filled with values linearly extrapolated from these two points.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1449,7 +1449,7 @@
 							},
 							"iterations": {
 								"title": "lowpass > iterations",
-								"description": "Defines how many times to apply the filter.",
+								"description": "Defines how many times to apply the filter in sequence. If the iterations is set to anything other than 1, the filter will be applied multiple times, using the output of the previous iteration as the input for the next.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1458,7 +1458,7 @@
 							},
 							"cutoff": {
 								"title": "lowpass > cutoff",
-								"description": "Defines around what frequency to limit the filter.",
+								"description": "Defines around what frequency to limit the filter. The filter will attenuate frequencies above this value.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1467,7 +1467,7 @@
 							},
 							"order": {
 								"title": "lowpass > order",
-								"description": "Defines the filter order.",
+								"description": "Defines the filter order. The higher the order, the steeper the attenuation slope will be.",
 								"additionalProperties": false,
 								"type": [
 									"string",
