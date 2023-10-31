@@ -2705,7 +2705,7 @@
 				}
 			},
 			"required": [
-				"segmaent"
+				"template"
 			],
 			"additionalProperties": false
 		},
