@@ -21,6 +21,9 @@
 			},
 			{
 				"$ref": "#/$defs/Segment Node"
+			},
+			{
+				"$ref": "#/$defs/Template Node"
 			}
 		]
 	},
@@ -50,9 +53,14 @@
 			"description": "A parameter node defines steps used to calculate a value or a sequence of values. The result is exported to the global scope and exported in the resulting JSON file.",
 			"type": "string"
 		},
+		"template": {
+			"title": "Template node",
+			"description": "A template node imports a separate Calqulus pipeline file into the current pipeline. This enables, for example, splitting a pipeline up into parts that can be reused in multiple pipelines, or to make the pipelines more readable.",
+			"type": "string"
+		},
 		"steps": {
 			"title": "Node steps",
-			"description": "A step node takes an input and some options and outputs a value.\t\t\t\t\t",
+			"description": "A step node takes an input and some options and outputs a value.",
 			"type": "array",
 			"additionalItems": false,
 			"items": {
@@ -1846,11 +1854,11 @@
 					{
 						"type": "object",
 						"title": "Step: if",
-						"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nOnly numbers and single-element arrays can be part of the expression.",
+						"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nOnly numbers and single-element arrays can be part of operands in the expression. In addition, a single input can be used to check for existence of values.",
 						"properties": {
 							"if": {
 								"title": "if step",
-								"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nOnly numbers and single-element arrays can be part of the expression.",
+								"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nOnly numbers and single-element arrays can be part of operands in the expression. In addition, a single input can be used to check for existence of values.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2681,6 +2689,23 @@
 			"required": [
 				"segment",
 				"steps"
+			],
+			"additionalProperties": false
+		},
+		"Template Node": {
+			"title": "Template node",
+			"description": "A template node imports a separate Calqulus pipeline file into the current pipeline. This enables, for example, splitting a pipeline up into parts that can be reused in multiple pipelines, or to make the pipelines more readable.",
+			"type": "object",
+			"properties": {
+				"template": {
+					"$ref": "#/$defs/template"
+				},
+				"where": {
+					"$ref": "#/$defs/where"
+				}
+			},
+			"required": [
+				"segmaent"
 			],
 			"additionalProperties": false
 		},
