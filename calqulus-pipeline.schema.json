@@ -1228,6 +1228,161 @@
 					},
 					{
 						"type": "object",
+						"title": "Step: power",
+						"description": "Computes the power of the input signal by raising it to the specified exponent. By default, the exponent is 2, which means that the input signal is squared.",
+						"properties": {
+							"power": {
+								"title": "power step",
+								"description": "Computes the power of the input signal by raising it to the specified exponent. By default, the exponent is 2, which means that the input signal is squared.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"exponent": {
+								"title": "power > exponent",
+								"description": "Defines the exponent to raise the input to. If the exponent is omitted, the default value of 2 will be used.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"power"
+						]
+					},
+					{
+						"type": "object",
+						"title": "Step: power",
+						"description": "Computes the power of the input signal by raising it to the specified exponent. By default, the exponent is 2, which means that the input signal is squared.",
+						"properties": {
+							"pow": {
+								"title": "pow step",
+								"description": "Computes the power of the input signal by raising it to the specified exponent. By default, the exponent is 2, which means that the input signal is squared.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"exponent": {
+								"title": "power > exponent",
+								"description": "Defines the exponent to raise the input to. If the exponent is omitted, the default value of 2 will be used.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"pow"
+						]
+					},
+					{
+						"type": "object",
+						"title": "Step: qbrt",
+						"description": "Computes the cube root of the input signal.",
+						"properties": {
+							"qbrt": {
+								"title": "qbrt step",
+								"description": "Computes the cube root of the input signal.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"qbrt"
+						]
+					},
+					{
+						"type": "object",
+						"title": "Step: root",
+						"description": "Computes the root of the input signal by taking the nth root of the input. By default, the index is 2, which means that the square root of the input signal is taken.",
+						"properties": {
+							"root": {
+								"title": "root step",
+								"description": "Computes the root of the input signal by taking the nth root of the input. By default, the index is 2, which means that the square root of the input signal is taken.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"index": {
+								"title": "root > index",
+								"description": "Defines the index of the root to take - the nth root of the input. For example, if the index is 2, the square root of the input will be taken. If the index is 3, the cube root of the input will be taken.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"root"
+						]
+					},
+					{
+						"type": "object",
 						"title": "Step: round",
 						"description": "Outputs a resulting signal of the same type as the input signal where every value is rounded to the specific precision.\n\nThe precision is specified as the number of decimal places to include in the result.",
 						"properties": {
@@ -1265,6 +1420,38 @@
 						},
 						"required": [
 							"round"
+						]
+					},
+					{
+						"type": "object",
+						"title": "Step: sqrt",
+						"description": "Computes the square root of the input signal.",
+						"properties": {
+							"sqrt": {
+								"title": "sqrt step",
+								"description": "Computes the square root of the input signal.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"sqrt"
 						]
 					},
 					{
