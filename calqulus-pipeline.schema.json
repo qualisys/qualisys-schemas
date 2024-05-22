@@ -58,6 +58,11 @@
 			"description": "A template node imports a separate Calqulus pipeline file into the current pipeline. This enables, for example, splitting a pipeline up into parts that can be reused in multiple pipelines, or to make the pipelines more readable.",
 			"type": "string"
 		},
+		"export": {
+			"title": "Export results",
+			"description": "Toggle export on/off for this node. Defaults to true.",
+			"type": "boolean"
+		},
 		"steps": {
 			"title": "Node steps",
 			"description": "A step node takes an input and some options and outputs a value.",
@@ -123,7 +128,7 @@
 							},
 							"useRotationOrder": {
 								"title": "angularVelocity > useRotationOrder",
-								"description": "If set to false it means that the angular velocity between the segment and refernce segment is transformed to be expressed into the resolution coordinate system.\n\nIf set to true it means that angular velocity between the segment and refernce segment is transformed to be expressed into the joint coordinate system using the Euler/Cardan sequence.",
+								"description": "If set to false it means that the angular velocity between the segment and reference segment is transformed to be expressed into the resolution coordinate system.\n\nIf set to true it means that angular velocity between the segment and reference segment is transformed to be expressed into the joint coordinate system using the Euler/Cardan sequence.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -214,7 +219,7 @@
 							},
 							"useRotationOrder": {
 								"title": "jointAngleVelocity > useRotationOrder",
-								"description": "If set to false it means that the angular velocity between the segment and refernce segment is transformed to be expressed into the resolution coordinate system.\n\nIf set to true it means that angular velocity between the segment and refernce segment is transformed to be expressed into the joint coordinate system using the Euler/Cardan sequence.",
+								"description": "If set to false it means that the angular velocity between the segment and reference segment is transformed to be expressed into the resolution coordinate system.\n\nIf set to true it means that angular velocity between the segment and reference segment is transformed to be expressed into the joint coordinate system using the Euler/Cardan sequence.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -758,11 +763,11 @@
 					{
 						"type": "object",
 						"title": "Step: distance",
-						"description": "Accepts marker or segment sequences and calculates the distance between the points (Euclidian norm).\n\nIt assumes that the values are comparable by index. If the sequence length differs, the calculation will be done up until the shortest length of the input sequences.",
+						"description": "Accepts marker or segment sequences and calculates the distance between the points (Euclidean norm).\n\nIt assumes that the values are comparable by index. If the sequence length differs, the calculation will be done up until the shortest length of the input sequences.",
 						"properties": {
 							"distance": {
 								"title": "distance step",
-								"description": "Accepts marker or segment sequences and calculates the distance between the points (Euclidian norm).\n\nIt assumes that the values are comparable by index. If the sequence length differs, the calculation will be done up until the shortest length of the input sequences.",
+								"description": "Accepts marker or segment sequences and calculates the distance between the points (Euclidean norm).\n\nIt assumes that the values are comparable by index. If the sequence length differs, the calculation will be done up until the shortest length of the input sequences.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -790,11 +795,11 @@
 					{
 						"type": "object",
 						"title": "Step: magnitude",
-						"description": "Accepts a vector or a segment sequence and calculates the magnitude of it (Euclidian norm).",
+						"description": "Accepts a vector or a segment sequence and calculates the magnitude of it (Euclidean norm).",
 						"properties": {
 							"magnitude": {
 								"title": "magnitude step",
-								"description": "Accepts a vector or a segment sequence and calculates the magnitude of it (Euclidian norm).",
+								"description": "Accepts a vector or a segment sequence and calculates the magnitude of it (Euclidean norm).",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1170,7 +1175,7 @@
 							},
 							"useCycles": {
 								"title": "integral > useCycles",
-								"description": "If the signal has cycles defined, the integral step will be run separately over each signal, and a list of values are returned, one for each cycle.\n\nTo avoid this behaviour, set useCycles to false.\n\nFor information on how to set event cycles on a signal, see the eventMask step.",
+								"description": "If the signal has cycles defined, the integral step will be run separately over each signal, and a list of values are returned, one for each cycle.\n\nTo avoid this behavior, set useCycles to false.\n\nFor information on how to set event cycles on a signal, see the eventMask step.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2041,11 +2046,11 @@
 					{
 						"type": "object",
 						"title": "Step: if",
-						"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nOnly numbers and single-element arrays can be part of operands in the expression. In addition, a single input can be used to check for existence of values.",
+						"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nYou are able to use \"functions\" in the expression to validate if a signal is empty or exists. The following functions are supported:\n\nempty(signalName) - Returns true if the signal is empty, i.e. the signal does not exist or the value is falsy but not zero (false, null, NaN, empty string). The value zero (0) is not considered empty because it is a valid value for a signal. exists(signalName) - Returns true if the signal exists, i.e. the signal is defined. This function does not validate the value of the signal but only if the signal is defined or not. The signal value could be falsy, but as long as the signal is defined, this function will return true.\n\n*Note: Due to the way YAML is parsed, you must wrap expressions beginning with an exclamation mark in quotes, e.g. \"!empty(mySignal)\".*\n\n*Note: In order to be able to evaluate missing signals, this step does not validate the inputs to the expression. To validate a signal's existence, use the exists function.*\n\n*Note: The validation of the inputs to the then and else options are deferred until they are needed. This means that if the expression evaluates to true, but the then option is missing, the step will not fail until the then option is needed. This is done to allow for the use of references to signals that may only be able to be resolved in certain circumstances, e.g. when the expression evaluates to true.*",
 						"properties": {
 							"if": {
 								"title": "if step",
-								"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nOnly numbers and single-element arrays can be part of operands in the expression. In addition, a single input can be used to check for existence of values.",
+								"description": "Runs a logical expression. The return value is determined by the result of the expression, and the then and else options.\n\nThe following operators are supported:\n\n  >=\n\nParentheses can be used to influence the order of evaluation.\n\nYou are able to use \"functions\" in the expression to validate if a signal is empty or exists. The following functions are supported:\n\nempty(signalName) - Returns true if the signal is empty, i.e. the signal does not exist or the value is falsy but not zero (false, null, NaN, empty string). The value zero (0) is not considered empty because it is a valid value for a signal. exists(signalName) - Returns true if the signal exists, i.e. the signal is defined. This function does not validate the value of the signal but only if the signal is defined or not. The signal value could be falsy, but as long as the signal is defined, this function will return true.\n\n*Note: Due to the way YAML is parsed, you must wrap expressions beginning with an exclamation mark in quotes, e.g. \"!empty(mySignal)\".*\n\n*Note: In order to be able to evaluate missing signals, this step does not validate the inputs to the expression. To validate a signal's existence, use the exists function.*\n\n*Note: The validation of the inputs to the then and else options are deferred until they are needed. This means that if the expression evaluates to true, but the then option is missing, the step will not fail until the then option is needed. This is done to allow for the use of references to signals that may only be able to be resolved in certain circumstances, e.g. when the expression evaluates to true.*",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2234,6 +2239,26 @@
 									"null"
 								]
 							},
+							"exclude": {
+								"title": "eventDuration > exclude",
+								"description": "One or more event signals that should invalidate an event sequence. If any of these events occur within a sequence, the sequence is invalidated.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number",
+									"array"
+								]
+							},
+							"include": {
+								"title": "eventDuration > include",
+								"description": "One or more event signals that should be included in an event sequence, otherwise it is excluded. If multiple events are supplied, all of them must be present in each sequence for it to be included.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number",
+									"array"
+								]
+							},
 							"export": {
 								"$ref": "#/$defs/globalOption export"
 							},
@@ -2292,6 +2317,26 @@
 								"type": [
 									"string",
 									"boolean"
+								]
+							},
+							"exclude": {
+								"title": "eventMask > exclude",
+								"description": "One or more event signals that should invalidate an event sequence. If any of these events occur within a sequence, the sequence is invalidated.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number",
+									"array"
+								]
+							},
+							"include": {
+								"title": "eventMask > include",
+								"description": "One or more event signals that should be included in an event sequence, otherwise it is excluded. If multiple events are supplied, all of them must be present in each sequence for it to be included.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"number",
+									"array"
 								]
 							},
 							"export": {
@@ -2580,11 +2625,11 @@
 					{
 						"type": "object",
 						"title": "Step: concatenate",
-						"description": "The concatenate step takes any number of inputs (at least 2) of the same (or equivalent) types and appends the values into one output. This will be done on each component, if they exist.",
+						"description": "The concatenate step takes any number of inputs (at least 2) of the same (or equivalent) types and appends the values into one output. This will be done on each component, if they exist.\n\nScalar inputs will be converted to arrays.\n\nIf all the inputs are integer arrays, the output will be an integer array. However, if any of the inputs are floats, the output will be a float array.",
 						"properties": {
 							"concatenate": {
 								"title": "concatenate step",
-								"description": "The concatenate step takes any number of inputs (at least 2) of the same (or equivalent) types and appends the values into one output. This will be done on each component, if they exist.",
+								"description": "The concatenate step takes any number of inputs (at least 2) of the same (or equivalent) types and appends the values into one output. This will be done on each component, if they exist.\n\nScalar inputs will be converted to arrays.\n\nIf all the inputs are integer arrays, the output will be an integer array. However, if any of the inputs are floats, the output will be a float array.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2679,6 +2724,18 @@
 						"title": "Field to match against",
 						"type": "string"
 					}
+				},
+				"force": {
+					"title": "Force filter",
+					"description": "Target a measurement by a the existence of forces.",
+					"type": "string",
+					"enum": [
+						"any",
+						"both",
+						"left",
+						"none",
+						"right"
+					]
 				}
 			},
 			"additionalProperties": false
@@ -2746,6 +2803,9 @@
 			"description": "A parameter node defines steps used to calculate a value or a sequence of values. The result is exported to the global scope and exported in the resulting JSON file.",
 			"type": "object",
 			"properties": {
+				"export": {
+					"$ref": "#/$defs/export"
+				},
 				"parameter": {
 					"$ref": "#/$defs/parameter"
 				},
@@ -2819,6 +2879,9 @@
 				"event": {
 					"$ref": "#/$defs/event"
 				},
+				"export": {
+					"$ref": "#/$defs/export"
+				},
 				"steps": {
 					"$ref": "#/$defs/steps"
 				},
@@ -2838,6 +2901,9 @@
 		"Marker Node": {
 			"type": "object",
 			"properties": {
+				"export": {
+					"$ref": "#/$defs/export"
+				},
 				"marker": {
 					"$ref": "#/$defs/marker"
 				},
@@ -2860,6 +2926,9 @@
 		"Segment Node": {
 			"type": "object",
 			"properties": {
+				"export": {
+					"$ref": "#/$defs/export"
+				},
 				"segment": {
 					"$ref": "#/$defs/segment"
 				},
@@ -2966,7 +3035,7 @@
 		},
 		"categoryOption Aggregation useCycles": {
 			"title": "useCycles (Aggregation category option)",
-			"description": "If the signal has cycles defined, the aggregation will be run separately over each signal, and a list of values are returned, one for each cycle.\n\nTo avoid this behaviour, set useCycles to false.\n\nFor information on how to set event cycles on a signal, see the eventMask step.",
+			"description": "If the signal has cycles defined, the aggregation will be run separately over each signal, and a list of values are returned, one for each cycle.\n\nTo avoid this behavior, set useCycles to false.\n\nFor information on how to set event cycles on a signal, see the eventMask step.",
 			"additionalProperties": false,
 			"type": [
 				"string",
