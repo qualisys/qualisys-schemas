@@ -11,6 +11,9 @@
 				"$ref": "#/$defs/Parameter Node"
 			},
 			{
+				"$ref": "#/$defs/Phase Node"
+			},
+			{
 				"$ref": "#/$defs/Space Node"
 			},
 			{
@@ -28,6 +31,16 @@
 		]
 	},
 	"$defs": {
+		"displayName": {
+			"title": "Display name",
+			"description": "The display name of the node.",
+			"type": "string"
+		},
+		"description": {
+			"title": "Description",
+			"description": "The description of the node.",
+			"type": "string"
+		},
 		"parameter": {
 			"title": "Parameter node",
 			"description": "A parameter node defines steps used to calculate a value or a sequence of values. The result is exported to the global scope and exported in the resulting JSON file.",
@@ -46,6 +59,11 @@
 		"marker": {
 			"title": "Marker node",
 			"description": "A parameter node defines steps used to calculate a value or a sequence of values. The result is exported to the global scope and exported in the resulting JSON file.",
+			"type": "string"
+		},
+		"phase": {
+			"title": "Phase node",
+			"description": "A phase defines a time period defined by a start and end event.",
 			"type": "string"
 		},
 		"segment": {
@@ -73,11 +91,11 @@
 					{
 						"type": "object",
 						"title": "Step: angle",
-						"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment, in degrees.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments, in degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v1, v2 and v3, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
+						"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment, in degrees.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments, in degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v0, v1 and v2, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
 						"properties": {
 							"angle": {
 								"title": "angle step",
-								"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment, in degrees.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments, in degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v1, v2 and v3, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
+								"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment, in degrees.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments, in degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v0, v1 and v2, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -762,6 +780,56 @@
 					},
 					{
 						"type": "object",
+						"title": "Step: cumulativeDistance",
+						"description": "Accepts a segment sequence and calculates the cumulative sum of distances between points in the sequence (Euclidean norm).\n\nBy default, the step returns a scalar value for each cycle of the input signal.\n\nTo return a series of values, set the scalar option to false.\n\nTo ignore cycles and calculate the cumulative distance for the entire cycle, set the useCycles option to false.",
+						"properties": {
+							"cumulativeDistance": {
+								"title": "cumulativeDistance step",
+								"description": "Accepts a segment sequence and calculates the cumulative sum of distances between points in the sequence (Euclidean norm).\n\nBy default, the step returns a scalar value for each cycle of the input signal.\n\nTo return a series of values, set the scalar option to false.\n\nTo ignore cycles and calculate the cumulative distance for the entire cycle, set the useCycles option to false.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"scalar": {
+								"title": "cumulativeDistance > scalar",
+								"description": "Returns the integral as a single value scalar.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"boolean"
+								]
+							},
+							"useCycles": {
+								"title": "cumulativeDistance > useCycles",
+								"description": "If the signal has cycles defined, the cumulative length step will be run separately over each signal, and a list of values are returned, one for each cycle.\n\nTo avoid this behavior, set useCycles to false.\n\nFor information on how to set event cycles on a signal, see the eventMask step.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"boolean"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"cumulativeDistance"
+						]
+					},
+					{
+						"type": "object",
 						"title": "Step: distance",
 						"description": "Accepts marker or segment sequences and calculates the distance between the points (Euclidean norm).\n\nIt assumes that the values are comparable by index. If the sequence length differs, the calculation will be done up until the shortest length of the input sequences.",
 						"properties": {
@@ -958,11 +1026,11 @@
 					{
 						"type": "object",
 						"title": "Step: convert",
-						"description": "For each value of the input, converts it according to the units defined in the from and to options.",
+						"description": "For each value of the input, converts it according to the units defined in the from and to options.\n\nFor example, to convert from radians to degrees, set from to rad and to to deg.\n\nFor a list of supported units, click here.\n\nUnits may generally be converted within a \"type\". Each unit may have one or more aliases, i.e., alternative spellings, abbreviations, or synonyms.\n\nIn addition to the following units, combination of units are also available, such as m/s, N*m (alternatively N m), m² (alternatively m^2, m2), etc. Acceleration\n\n| Unit | Aliases | |------|------| | Gal |  | | gee |  |\n\nActivity\n\n| Unit | Aliases | |------|------| | katal | kat, Katal | | unit | U, enzUnit |\n\nAngle\n\n| Unit | Aliases | |------|------| | arcminute | arcmin, arcminutes | | arcsecond | arcsec, arcseconds | | degree | °, deg, degrees | | gradian | gon, grad, grads | | radian | rad, radians | | rotation |  |\n\nAngular Velocity\n\n| Unit | Aliases | |------|------| | rpm |  |\n\nArea\n\n| Unit | Aliases | |------|------| | acre | acres | | hectare |  | | sqft |  |\n\nCapacitance\n\n| Unit | Aliases | |------|------| | farad | F, Farad |\n\nCharge\n\n| Unit | Aliases | |------|------| | Ah |  | | coulomb | C, Coulomb |\n\nConductance\n\n| Unit | Aliases | |------|------| | siemens | S, Siemens |\n\nCurrency\n\n| Unit | Aliases | |------|------| | cents |  | | dollar | USD |\n\nCurrent\n\n| Unit | Aliases | |------|------| | ampere | A, Ampere, amp, amps |\n\nEnergy\n\n| Unit | Aliases | |------|------| | Calorie | Cal, Calories | | Wh |  | | btu | BTU, BTUs | | calorie | cal, calories | | electronvolt | eV, electronvolts | | erg | ergs | | joule | J, Joule, joules, Joules | | therm-US | th, therm, therms, Therm |\n\nForce\n\n| Unit | Aliases | |------|------| | dyne | dyn | | newton | N, Newton | | pound-force | lbf |\n\nFrequency\n\n| Unit | Aliases | |------|------| | hertz | Hz, Hertz |\n\nIlluminance\n\n| Unit | Aliases | |------|------| | lux |  |\n\nInductance\n\n| Unit | Aliases | |------|------| | henry | H, Henry |\n\nInformation\n\n| Unit | Aliases | |------|------| | bit | b, bits | | byte | B, bytes |\n\nInformation Rate\n\n| Unit | Aliases | |------|------| | Bps |  | | bps |  |\n\nLength\n\n| Unit | Aliases | |------|------| | AU | astronomical-unit | | angstrom | ang, angstroms | | datamile | DM | | fathom | fathoms | | foot | ft, feet, ' | | furlong | furlongs | | inch | in, inches, \" | | league | leagues | | light-minute | lmin | | light-second | ls | | light-year | ly | | meter | m, meters, metre, metres | | mil | mils | | mile | mi, miles | | naut-mile | nmi | | parsec | pc, parsecs | | pica | picas | | point | pt, points | | redshift | z, red-shift | | rod | rd, rods | | yard | yd, yards |\n\nLuminous Power\n\n| Unit | Aliases | |------|------| | lumen | lm |\n\nMagnetism\n\n| Unit | Aliases | |------|------| | gauss | G | | maxwell | Mx, maxwells | | oersted | Oe, oersteds | | tesla | T, teslas | | weber | Wb, webers |\n\nMass\n\n| Unit | Aliases | |------|------| | AMU | u, amu | | carat | ct, carats | | dalton | Da, Dalton, Daltons, daltons | | dram | drams, dr | | grain | grains, gr | | gram | g, grams, gramme, grammes | | kilogram | kg, kilograms | | metric-ton | t, tonne | | ounce | oz, ounces | | pound | lbs, lb, pounds, # | | short-ton | tn, ton | | slug | slugs | | stone | stones, st |\n\nMolar Concentration\n\n| Unit | Aliases | |------|------| | molar | M | | wtpercent | wt% |\n\nPotential\n\n| Unit | Aliases | |------|------| | volt | V, Volt, volts |\n\nPower\n\n| Unit | Aliases | |------|------| | horsepower | hp | | volt-ampere | VA | | volt-ampere-reactive | var, Var, VAr, VAR | | watt | W, watts |\n\nPressure\n\n| Unit | Aliases | |------|------| | atm | ATM, atmosphere, atmospheres | | bar | bars | | cmh2o | cmH2O | | inHg |  | | inh2o | inH2O | | mmHg |  | | pascal | Pa, Pascal | | psi |  | | torr |  |\n\nRadiation\n\n| Unit | Aliases | |------|------| | becquerel | Bq, becquerels | | curie | Ci, curies | | gray | Gy, grays | | roentgen | R | | sievert | Sv, sieverts |\n\nResistance\n\n| Unit | Aliases | |------|------| | ohm | Ohm, Ω, Ω |\n\nSpeed\n\n| Unit | Aliases | |------|------| | fps |  | | knot | kt, kn, kts, knots | | kph |  | | mph |  |\n\nSubstance\n\n| Unit | Aliases | |------|------| | mole | mol |\n\nTemperature\n\n| Unit | Aliases | |------|------| | celsius | °C, degC, centigrade | | fahrenheit | degF | | kelvin | degK | | rankine | degR | | temp-C | tempC | | temp-F | tempF | | temp-K | tempK | | temp-R | tempR |\n\nTime\n\n| Unit | Aliases | |------|------| | century | centuries | | day | d, days | | decade | decades | | fortnight | fortnights | | hour | h, hr, hrs, hours | | minute | min, mins, minutes | | second | s, sec, secs, seconds | | week | wk, weeks | | year | y, yr, years, annum |\n\nViscosity\n\n| Unit | Aliases | |------|------| | poise | P | | stokes | St |\n\nVolume\n\n| Unit | Aliases | |------|------| | beerbarrel | bl, bl-us, beerbarrels, beer-barrel, beer-barrels | | beerbarrel-imp | blimp, bl-imp, beerbarrels-imp, beer-barrel-imp, beer-barrels-imp | | bushel | bu, bsh, bushels | | cup | cu, cups | | fluid-ounce | floz, fluid-ounces | | fluid-ounce-imp | flozimp, floz-imp, fluid-ounces-imp | | gallon | gal, gallons | | gallon-imp | galimp, gallons-imp | | liter | l, L, liters, litre, litres | | oilbarrel | bbl, oilbarrels, oil-barrel, oil-barrels | | pint | pt, pints | | pint-imp | ptimp, pints-imp | | quart | qt, quarts | | tablespoon | tb, tbsp, tbs, tablespoons | | teaspoon | tsp, teaspoons |\n",
 						"properties": {
 							"convert": {
 								"title": "convert step",
-								"description": "For each value of the input, converts it according to the units defined in the from and to options.",
+								"description": "For each value of the input, converts it according to the units defined in the from and to options.\n\nFor example, to convert from radians to degrees, set from to rad and to to deg.\n\nFor a list of supported units, click here.\n\nUnits may generally be converted within a \"type\". Each unit may have one or more aliases, i.e., alternative spellings, abbreviations, or synonyms.\n\nIn addition to the following units, combination of units are also available, such as m/s, N*m (alternatively N m), m² (alternatively m^2, m2), etc. Acceleration\n\n| Unit | Aliases | |------|------| | Gal |  | | gee |  |\n\nActivity\n\n| Unit | Aliases | |------|------| | katal | kat, Katal | | unit | U, enzUnit |\n\nAngle\n\n| Unit | Aliases | |------|------| | arcminute | arcmin, arcminutes | | arcsecond | arcsec, arcseconds | | degree | °, deg, degrees | | gradian | gon, grad, grads | | radian | rad, radians | | rotation |  |\n\nAngular Velocity\n\n| Unit | Aliases | |------|------| | rpm |  |\n\nArea\n\n| Unit | Aliases | |------|------| | acre | acres | | hectare |  | | sqft |  |\n\nCapacitance\n\n| Unit | Aliases | |------|------| | farad | F, Farad |\n\nCharge\n\n| Unit | Aliases | |------|------| | Ah |  | | coulomb | C, Coulomb |\n\nConductance\n\n| Unit | Aliases | |------|------| | siemens | S, Siemens |\n\nCurrency\n\n| Unit | Aliases | |------|------| | cents |  | | dollar | USD |\n\nCurrent\n\n| Unit | Aliases | |------|------| | ampere | A, Ampere, amp, amps |\n\nEnergy\n\n| Unit | Aliases | |------|------| | Calorie | Cal, Calories | | Wh |  | | btu | BTU, BTUs | | calorie | cal, calories | | electronvolt | eV, electronvolts | | erg | ergs | | joule | J, Joule, joules, Joules | | therm-US | th, therm, therms, Therm |\n\nForce\n\n| Unit | Aliases | |------|------| | dyne | dyn | | newton | N, Newton | | pound-force | lbf |\n\nFrequency\n\n| Unit | Aliases | |------|------| | hertz | Hz, Hertz |\n\nIlluminance\n\n| Unit | Aliases | |------|------| | lux |  |\n\nInductance\n\n| Unit | Aliases | |------|------| | henry | H, Henry |\n\nInformation\n\n| Unit | Aliases | |------|------| | bit | b, bits | | byte | B, bytes |\n\nInformation Rate\n\n| Unit | Aliases | |------|------| | Bps |  | | bps |  |\n\nLength\n\n| Unit | Aliases | |------|------| | AU | astronomical-unit | | angstrom | ang, angstroms | | datamile | DM | | fathom | fathoms | | foot | ft, feet, ' | | furlong | furlongs | | inch | in, inches, \" | | league | leagues | | light-minute | lmin | | light-second | ls | | light-year | ly | | meter | m, meters, metre, metres | | mil | mils | | mile | mi, miles | | naut-mile | nmi | | parsec | pc, parsecs | | pica | picas | | point | pt, points | | redshift | z, red-shift | | rod | rd, rods | | yard | yd, yards |\n\nLuminous Power\n\n| Unit | Aliases | |------|------| | lumen | lm |\n\nMagnetism\n\n| Unit | Aliases | |------|------| | gauss | G | | maxwell | Mx, maxwells | | oersted | Oe, oersteds | | tesla | T, teslas | | weber | Wb, webers |\n\nMass\n\n| Unit | Aliases | |------|------| | AMU | u, amu | | carat | ct, carats | | dalton | Da, Dalton, Daltons, daltons | | dram | drams, dr | | grain | grains, gr | | gram | g, grams, gramme, grammes | | kilogram | kg, kilograms | | metric-ton | t, tonne | | ounce | oz, ounces | | pound | lbs, lb, pounds, # | | short-ton | tn, ton | | slug | slugs | | stone | stones, st |\n\nMolar Concentration\n\n| Unit | Aliases | |------|------| | molar | M | | wtpercent | wt% |\n\nPotential\n\n| Unit | Aliases | |------|------| | volt | V, Volt, volts |\n\nPower\n\n| Unit | Aliases | |------|------| | horsepower | hp | | volt-ampere | VA | | volt-ampere-reactive | var, Var, VAr, VAR | | watt | W, watts |\n\nPressure\n\n| Unit | Aliases | |------|------| | atm | ATM, atmosphere, atmospheres | | bar | bars | | cmh2o | cmH2O | | inHg |  | | inh2o | inH2O | | mmHg |  | | pascal | Pa, Pascal | | psi |  | | torr |  |\n\nRadiation\n\n| Unit | Aliases | |------|------| | becquerel | Bq, becquerels | | curie | Ci, curies | | gray | Gy, grays | | roentgen | R | | sievert | Sv, sieverts |\n\nResistance\n\n| Unit | Aliases | |------|------| | ohm | Ohm, Ω, Ω |\n\nSpeed\n\n| Unit | Aliases | |------|------| | fps |  | | knot | kt, kn, kts, knots | | kph |  | | mph |  |\n\nSubstance\n\n| Unit | Aliases | |------|------| | mole | mol |\n\nTemperature\n\n| Unit | Aliases | |------|------| | celsius | °C, degC, centigrade | | fahrenheit | degF | | kelvin | degK | | rankine | degR | | temp-C | tempC | | temp-F | tempF | | temp-K | tempK | | temp-R | tempR |\n\nTime\n\n| Unit | Aliases | |------|------| | century | centuries | | day | d, days | | decade | decades | | fortnight | fortnights | | hour | h, hr, hrs, hours | | minute | min, mins, minutes | | second | s, sec, secs, seconds | | week | wk, weeks | | year | y, yr, years, annum |\n\nViscosity\n\n| Unit | Aliases | |------|------| | poise | P | | stokes | St |\n\nVolume\n\n| Unit | Aliases | |------|------| | beerbarrel | bl, bl-us, beerbarrels, beer-barrel, beer-barrels | | beerbarrel-imp | blimp, bl-imp, beerbarrels-imp, beer-barrel-imp, beer-barrels-imp | | bushel | bu, bsh, bushels | | cup | cu, cups | | fluid-ounce | floz, fluid-ounces | | fluid-ounce-imp | flozimp, floz-imp, fluid-ounces-imp | | gallon | gal, gallons | | gallon-imp | galimp, gallons-imp | | liter | l, L, liters, litre, litres | | oilbarrel | bbl, oilbarrels, oil-barrel, oil-barrels | | pint | pt, pints | | pint-imp | ptimp, pints-imp | | quart | qt, quarts | | tablespoon | tb, tbsp, tbs, tablespoons | | teaspoon | tsp, teaspoons |\n",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -1425,6 +1493,46 @@
 						},
 						"required": [
 							"round"
+						]
+					},
+					{
+						"type": "object",
+						"title": "Step: sort",
+						"description": "Sorts the input in the specified order. By default, the values are sorted in ascending order. The order can be changed by setting the order property to desc.",
+						"properties": {
+							"sort": {
+								"title": "sort step",
+								"description": "Sorts the input in the specified order. By default, the values are sorted in ascending order. The order can be changed by setting the order property to desc.",
+								"additionalProperties": false,
+								"type": [
+									"string",
+									"array",
+									"null"
+								]
+							},
+							"order": {
+								"title": "sort > order",
+								"description": "",
+								"additionalProperties": false,
+								"type": [
+									"string"
+								]
+							},
+							"export": {
+								"$ref": "#/$defs/globalOption export"
+							},
+							"output": {
+								"$ref": "#/$defs/globalOption output"
+							},
+							"set": {
+								"$ref": "#/$defs/globalOption set"
+							},
+							"space": {
+								"$ref": "#/$defs/globalOption space"
+							}
+						},
+						"required": [
+							"sort"
 						]
 					},
 					{
@@ -2279,11 +2387,11 @@
 					{
 						"type": "object",
 						"title": "Step: eventMask",
-						"description": "This is a step which takes a signal and 2 event inputs and outputs a filtered signal with values only appearing in between the events.\n\nInputs 2 and 3 will be combined into pairs from values in input 2 to values in input 3.\n\nThese pairs can be used to filter the values in input 1.\n\nThese event pairs, or cycles are also stored on the resulting signal, which can be used in aggregations to aggregate over event cycles. The signal will keep the cycle information no matter if the signal was truncated or not.\n\nIf the signal input is an event, only event frames that is within the span of one of the event pairs will be returned.\n\nThe optional parameter replacement will, if set, replace masked values with the given value. If replacement is not set and truncate is true – the masked values will be removed. The replacement property has no effect when the signal input is an event.\n\nIf replacement is not set and truncate is false (default behavior), the output signal is untouched, except that the event cycles are annotated on the signal.",
+						"description": "This is a step which takes a signal and 2 event inputs and outputs a filtered signal with values only appearing in between the events.\n\nInputs 2 and 3 will be combined into pairs from values in input 2 to values in input 3. If there are multiple frames in input 2 before a larger frame is found in input 3, the last frame in input 2 will be paired with the frame in input 3.\n\nThese pairs can be used to filter the values in input 1.\n\nThese event pairs, or cycles are also stored on the resulting signal, which can be used in aggregations to aggregate over event cycles. The signal will keep the cycle information no matter if the signal was truncated or not.\n\nIf the signal input is an event, only event frames that is within the span of one of the event pairs will be returned.\n\nThe optional parameter replacement will, if set, replace masked values with the given value. If replacement is not set and truncate is true – the masked values will be removed. The replacement property has no effect when the signal input is an event.\n\nIf replacement is not set and truncate is false (default behavior), the output signal is untouched, except that the event cycles are annotated on the signal.",
 						"properties": {
 							"eventMask": {
 								"title": "eventMask step",
-								"description": "This is a step which takes a signal and 2 event inputs and outputs a filtered signal with values only appearing in between the events.\n\nInputs 2 and 3 will be combined into pairs from values in input 2 to values in input 3.\n\nThese pairs can be used to filter the values in input 1.\n\nThese event pairs, or cycles are also stored on the resulting signal, which can be used in aggregations to aggregate over event cycles. The signal will keep the cycle information no matter if the signal was truncated or not.\n\nIf the signal input is an event, only event frames that is within the span of one of the event pairs will be returned.\n\nThe optional parameter replacement will, if set, replace masked values with the given value. If replacement is not set and truncate is true – the masked values will be removed. The replacement property has no effect when the signal input is an event.\n\nIf replacement is not set and truncate is false (default behavior), the output signal is untouched, except that the event cycles are annotated on the signal.",
+								"description": "This is a step which takes a signal and 2 event inputs and outputs a filtered signal with values only appearing in between the events.\n\nInputs 2 and 3 will be combined into pairs from values in input 2 to values in input 3. If there are multiple frames in input 2 before a larger frame is found in input 3, the last frame in input 2 will be paired with the frame in input 3.\n\nThese pairs can be used to filter the values in input 1.\n\nThese event pairs, or cycles are also stored on the resulting signal, which can be used in aggregations to aggregate over event cycles. The signal will keep the cycle information no matter if the signal was truncated or not.\n\nIf the signal input is an event, only event frames that is within the span of one of the event pairs will be returned.\n\nThe optional parameter replacement will, if set, replace masked values with the given value. If replacement is not set and truncate is true – the masked values will be removed. The replacement property has no effect when the signal input is an event.\n\nIf replacement is not set and truncate is false (default behavior), the output signal is untouched, except that the event cycles are annotated on the signal.",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -2637,6 +2745,14 @@
 									"null"
 								]
 							},
+							"sort": {
+								"title": "concatenate > sort",
+								"description": "If defined, the resulting array(s) will be sorted by value in ascending or descending order.",
+								"additionalProperties": false,
+								"type": [
+									"string"
+								]
+							},
 							"export": {
 								"$ref": "#/$defs/globalOption export"
 							},
@@ -2798,11 +2914,32 @@
 				"segment"
 			]
 		},
+		"startEvent": {
+			"title": "Start event",
+			"description": "The event that marks the start of the phase.",
+			"type": "string"
+		},
+		"endEvent": {
+			"title": "End event",
+			"description": "The event that marks the end of the phase.",
+			"type": "string"
+		},
+		"partial": {
+			"title": "Partial phase",
+			"description": "Whether to accept phases without a start or end event at the beginning or end of the measurement.",
+			"type": "boolean"
+		},
 		"Parameter Node": {
 			"title": "Parameter node",
 			"description": "A parameter node defines steps used to calculate a value or a sequence of values. The result is exported to the global scope and exported in the resulting JSON file.",
 			"type": "object",
 			"properties": {
+				"description": {
+					"$ref": "#/$defs/description"
+				},
+				"displayName": {
+					"$ref": "#/$defs/displayName"
+				},
 				"export": {
 					"$ref": "#/$defs/export"
 				},
@@ -2822,6 +2959,37 @@
 			"required": [
 				"parameter",
 				"steps"
+			],
+			"additionalProperties": false
+		},
+		"Phase Node": {
+			"title": "Phase node",
+			"description": "A phase defines a time period defined by a start and end event.",
+			"type": "object",
+			"properties": {
+				"description": {
+					"$ref": "#/$defs/description"
+				},
+				"displayName": {
+					"$ref": "#/$defs/displayName"
+				},
+				"phase": {
+					"$ref": "#/$defs/phase"
+				},
+				"start": {
+					"$ref": "#/$defs/startEvent"
+				},
+				"end": {
+					"$ref": "#/$defs/endEvent"
+				},
+				"partial": {
+					"$ref": "#/$defs/partial"
+				}
+			},
+			"required": [
+				"phase",
+				"start",
+				"end"
 			],
 			"additionalProperties": false
 		},
@@ -2876,6 +3044,12 @@
 		"Event Node": {
 			"type": "object",
 			"properties": {
+				"description": {
+					"$ref": "#/$defs/description"
+				},
+				"displayName": {
+					"$ref": "#/$defs/displayName"
+				},
 				"event": {
 					"$ref": "#/$defs/event"
 				},
@@ -2901,6 +3075,12 @@
 		"Marker Node": {
 			"type": "object",
 			"properties": {
+				"description": {
+					"$ref": "#/$defs/description"
+				},
+				"displayName": {
+					"$ref": "#/$defs/displayName"
+				},
 				"export": {
 					"$ref": "#/$defs/export"
 				},
@@ -2926,6 +3106,12 @@
 		"Segment Node": {
 			"type": "object",
 			"properties": {
+				"description": {
+					"$ref": "#/$defs/description"
+				},
+				"displayName": {
+					"$ref": "#/$defs/displayName"
+				},
 				"export": {
 					"$ref": "#/$defs/export"
 				},
