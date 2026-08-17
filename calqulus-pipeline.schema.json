@@ -91,11 +91,11 @@
 					{
 						"type": "object",
 						"title": "Step: angle",
-						"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment, in degrees.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments, in degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v0, v1 and v2, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
+						"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment. Use exportUnit to choose radians (default) or degrees in the result.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments. Use exportUnit for radians or degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v0, v1 and v2, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
 						"properties": {
 							"angle": {
 								"title": "angle step",
-								"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment, in degrees.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments, in degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v0, v1 and v2, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
+								"description": "The angle step performs slightly different operation depending on the type and number of inputs.\n\nNote: _For cases where multiple inputs are given of varying lengths, the returning array will be the maximum length and the last value will be repeated for the shorter inputs to fill the gap._\n\nOne input: `` Computes the euler angle of the specified segment. Use exportUnit to choose radians (default) or degrees in the result.\n\nTwo inputs: (, ) | (, ) Given two segments: Computes the relative (euler) angle between the specified segments. Use exportUnit for radians or degrees.\n\nGiven two vectors: Computes relative angle between the specified vectors, in radians.\n\nThree inputs: , ,  Computes the angle between the two vectors defined by the specified points (v0 -> v1, v1 -> v2), in radians. The points can be specified as arrays or with named vector signals (ie markers).\n\nGiven the inputs v0, v1 and v2, the resulting angle is given by:\n\nangleBetween(v1 - v0, v1 - v2)\n\nFour inputs: , , ,  Computes the angle between the two lines formed by (v0 -> v1, v2 -> v3), in radians. The points can be specified as arrays or with named vector signals (ie markers).",
 								"additionalProperties": false,
 								"type": [
 									"string",
@@ -123,6 +123,9 @@
 							},
 							"unwrap": {
 								"$ref": "#/$defs/categoryOption Angle unwrap"
+							},
+							"exportUnit": {
+								"$ref": "#/$defs/categoryOption Angle exportUnit"
 							}
 						},
 						"required": [
@@ -173,6 +176,9 @@
 							},
 							"unwrap": {
 								"$ref": "#/$defs/categoryOption Angle unwrap"
+							},
+							"exportUnit": {
+								"$ref": "#/$defs/categoryOption Angle exportUnit"
 							}
 						},
 						"required": [
@@ -214,6 +220,9 @@
 							},
 							"unwrap": {
 								"$ref": "#/$defs/categoryOption Angle unwrap"
+							},
+							"exportUnit": {
+								"$ref": "#/$defs/categoryOption Angle exportUnit"
 							}
 						},
 						"required": [
@@ -264,6 +273,9 @@
 							},
 							"unwrap": {
 								"$ref": "#/$defs/categoryOption Angle unwrap"
+							},
+							"exportUnit": {
+								"$ref": "#/$defs/categoryOption Angle exportUnit"
 							}
 						},
 						"required": [
@@ -3217,6 +3229,16 @@
 				"number"
 			],
 			"name": "unwrap",
+			"category": "Angle"
+		},
+		"categoryOption Angle exportUnit": {
+			"title": "exportUnit (Angle category option)",
+			"description": "Unit for exported angle values. Defaults to degrees.\n\nSegment and segment–segment Euler angles are computed in degrees internally; they are converted to radians when this option is radians. Vector-based angles are always computed in radians.",
+			"additionalProperties": false,
+			"type": [
+				"string"
+			],
+			"name": "exportUnit",
 			"category": "Angle"
 		},
 		"categoryOption Aggregation useCycles": {
